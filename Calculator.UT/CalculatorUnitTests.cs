@@ -30,7 +30,7 @@ namespace Calculator.UT
         [TestCase(1, 3, -2)]
         [TestCase(-1, -3, 2)]
         [TestCase(3, 3, 0)]
-        [TestCase(4,4,0)]
+        [TestCase(8,4,4)]
         public void Subtract_SimpleCalculations(double a, double b, double expected)
         {
             var uut = new Calculator();
