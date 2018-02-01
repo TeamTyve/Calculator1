@@ -11,55 +11,61 @@ namespace Calculator.Test.Unit
     [TestFixture]
     public class CalculatorUnitTest
     {
+        private Calculator _uut;
+
+        [SetUp]
+        public void Setup()
+        {
+            _uut = new Calculator();
+        }
 
 
         [Test]
         public void Add_Add2And4_Returns6()
         {
-            var utt = new Calculator();
 
-            Assert.That(utt.Add(2, 4), Is.EqualTo(6));
+            Assert.That(_uut.Add(2, 4), Is.EqualTo(6));
         }
 
         [Test]
         public void Add_AddMinus2And4_Returns2()
         {
-            var utt = new Calculator();
+            _uut = new Calculator();
 
-            Assert.That(utt.Add(-2, 4), Is.EqualTo(2)); //2
+            Assert.That(_uut.Add(-2, 4), Is.EqualTo(2)); //2
         }
 
         [Test]
         public void Subtract_Subtract6And4_Returns2()
         {
-            var utt = new Calculator();
+            _uut = new Calculator();
 
-            Assert.That(utt.Subtract(6, 4), Is.EqualTo(2));
+            Assert.That(_uut.Subtract(6, 4), Is.EqualTo(2));
         }
 
         [Test]
         public void Multiply_Multiply3And4_Returns12()
         {
-            var utt = new Calculator();
+            _uut = new Calculator();
 
-            Assert.That(utt.Multiply(3, 4), Is.EqualTo(12));
+            Assert.That(_uut.Multiply(3, 4), Is.EqualTo(12));
         }
 
         [Test]
         public void Power_Power3raised4_Returns81()
         {
-            var utt = new Calculator();
+            _uut = new Calculator();
 
-            Assert.That(utt.Power(3, 4), Is.EqualTo(81));
+            Assert.That(_uut.Power(3, 4), Is.EqualTo(81));
         }
 
         // Testcase
         [Test, TestCaseSource(typeof(CalculatorTestClass), nameof(CalculatorTestClass.Add_SimpleCalculations))]
         public double Add_Add_SimpleCalculations(double a, double b)
         {
-            var utt = new Calculator();
+            _uut = new Calculator();
 
-            return utt.Add(a, b);
+            return _uut.Add(a, b);
         }
 
         // Testcase (a + b, expected = c)
@@ -68,10 +74,28 @@ namespace Calculator.Test.Unit
         [TestCase(-1, -1, -2)]
         public void Add_Add_SimpleCalculations_Alternative(double a, double b, double expected)
         {
-            var utt = new Calculator();
+            _uut = new Calculator();
 
-            Assert.That(utt.Add(a, b), Is.EqualTo(expected));
+            Assert.That(_uut.Add(a, b), Is.EqualTo(expected));
 
+        }
+
+        [TestCase(0, 1, "You divided by zero")]
+        [TestCase(1, 0, "You divided by zero")]
+        [TestCase(0, 0, "You divided by zero")]
+        public void Division_Div0by0_Throws_DivideByZeroException(double divinend, double divisor, string expected)
+        {
+            var ex = Assert.Catch<DivideByZeroException>(() => _uut.Divide(divinend, divisor));
+
+            StringAssert.Contains(expected, ex.Message);
+        }
+
+        [TestCase(2, 2, 1)]
+        [TestCase(4, 2, 2)]
+        [TestCase(1, 2, 0.5)]
+        public void Division_Div_Simplecalculations(double divinend, double divisor, double expected)
+        {
+            Assert.That(_uut.Divide(divinend, divisor), Is.EqualTo(expected));
         }
     }
 

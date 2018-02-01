@@ -27,7 +27,7 @@ namespace Calculator
 
         public double Multiply(double a, double b)
         {
-            Accumulator = a - b;
+            Accumulator = a * b;
             return Accumulator;
         }
 
