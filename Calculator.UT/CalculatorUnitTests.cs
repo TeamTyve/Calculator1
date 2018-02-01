@@ -80,6 +80,7 @@ namespace Calculator.Test.Unit
 
         }
 
+<<<<<<< HEAD
         [TestCase(0, 1, "You divided by zero")]
         [TestCase(1, 0, "You divided by zero")]
         [TestCase(0, 0, "You divided by zero")]
