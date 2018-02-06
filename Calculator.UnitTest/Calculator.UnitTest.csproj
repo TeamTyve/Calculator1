@@ -7,8 +7,8 @@
     <ProjectGuid>{AFA10089-8671-4F14-8654-3E1FCB64629E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Calculator.UT</RootNamespace>
-    <AssemblyName>Calculator.UT</AssemblyName>
+    <RootNamespace>Calculator.UnitTest</RootNamespace>
+    <AssemblyName>Calculator.UnitTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
