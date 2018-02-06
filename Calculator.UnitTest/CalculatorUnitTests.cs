@@ -93,6 +93,7 @@ namespace Calculator.Test.Unit
         [TestCase(2, 2, 1)]
         [TestCase(4, 2, 2)]
         [TestCase(1, 2, 0.5)]
+        [TestCase(6, 6, 1)]
         public void Division_Div_Simplecalculations(double divinend, double divisor, double expected)
         {
             Assert.That(_uut.Divide(divinend, divisor), Is.EqualTo(expected));
