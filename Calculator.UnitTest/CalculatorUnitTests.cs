@@ -141,6 +141,13 @@ namespace Calculator.Test.Unit
             // Assert
             Assert.That(_uut.Accumulator, Is.EqualTo(2));
         }
+
+        [Test]
+        public void Accumulator_FreshAccumulator_Returns0()
+        {
+            // Assert
+            Assert.That(_uut.Accumulator, Is.EqualTo(0));
+        }
     }
 
     public class CalculatorTestClass
