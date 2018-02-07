@@ -43,7 +43,7 @@ namespace Calculator
 
         public double Divide(double dividend, double divisor)
         {
-            if (dividend == 0 || divisor == 0)
+            if (divisor == 0)
             {
                 throw new DivideByZeroException("You divided by zero");
             }

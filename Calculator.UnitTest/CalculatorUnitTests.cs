@@ -20,43 +20,38 @@ namespace Calculator.Test.Unit
         }
 
 
-        [Test]
-        public void Add_Add2And4_Returns6()
+        [TestCase(2, 4, 6)]
+        [TestCase(-2, 4, 2)]
+        [TestCase(-2, -4, -6)]
+        public void Add_SimpleCalculatons_NoThrow(double a, double b, double expected)
         {
-
-            Assert.That(_uut.Add(2, 4), Is.EqualTo(6));
+            Assert.That(_uut.Add(a, b), Is.EqualTo(expected));
         }
 
-        [Test]
-        public void Add_AddMinus2And4_Returns2()
+        [TestCase(2, 4, -2)]
+        [TestCase(-2, 4, -6)]
+        [TestCase(-2, -4, 2)]
+        [TestCase(6, 4, 2)]
+        public void Subtract_SimpleCalculatons_NoThrow(double a, double b, double expected)
         {
-            _uut = new Calculator();
-
-            Assert.That(_uut.Add(-2, 4), Is.EqualTo(2)); //2
+            Assert.That(_uut.Subtract(a, b), Is.EqualTo(expected));
         }
 
-        [Test]
-        public void Subtract_Subtract6And4_Returns2()
+        [TestCase(3, 4, 12)]
+        [TestCase(3, -3, -9)]
+        [TestCase(5, 0, 0)]
+        public void Multiply_SimpleCalculatons_NoThrow(double a, double b, double expected)
         {
-            _uut = new Calculator();
-
-            Assert.That(_uut.Subtract(6, 4), Is.EqualTo(2));
+            Assert.That(_uut.Multiply(a, b), Is.EqualTo(expected));
         }
 
-        [Test]
-        public void Multiply_Multiply3And4_Returns12()
+        [TestCase(3, 2, 9)]
+        [TestCase(3, 3, 27)]
+        [TestCase(5, 1, 5)]
+        [TestCase(5, 0, 1)]
+        public void Power_SimpleCalculatons_NoThrow(double a, double exp, double expected)
         {
-            _uut = new Calculator();
-
-            Assert.That(_uut.Multiply(3, 4), Is.EqualTo(12));
-        }
-
-        [Test]
-        public void Power_Power3raised4_Returns81()
-        {
-            _uut = new Calculator();
-
-            Assert.That(_uut.Power(3, 4), Is.EqualTo(81));
+            Assert.That(_uut.Power(a, exp), Is.EqualTo(expected));
         }
 
         // Testcase
@@ -80,7 +75,6 @@ namespace Calculator.Test.Unit
 
         }
 
-        [TestCase(0, 1, "You divided by zero")]
         [TestCase(1, 0, "You divided by zero")]
         [TestCase(0, 0, "You divided by zero")]
         public void Division_Div0by0_Throws_DivideByZeroException(double divinend, double divisor, string expected)
@@ -93,7 +87,6 @@ namespace Calculator.Test.Unit
         [TestCase(2, 2, 1)]
         [TestCase(4, 2, 2)]
         [TestCase(1, 2, 0.5)]
-        [TestCase(6, 6, 1)]
         public void Division_Div_Simplecalculations(double divinend, double divisor, double expected)
         {
             Assert.That(_uut.Divide(divinend, divisor), Is.EqualTo(expected));
