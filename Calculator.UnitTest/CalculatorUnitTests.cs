@@ -91,6 +91,56 @@ namespace Calculator.Test.Unit
         {
             Assert.That(_uut.Divide(divinend, divisor), Is.EqualTo(expected));
         }
+
+        [Test]
+        public void Accumulator_AddAccumulator2Plus2_Return4()
+        {
+            // Arrange
+            double c = _uut.Add(2, 2);
+
+            // Act / Assert
+            Assert.That(_uut.Accumulator, Is.EqualTo(4));
+        }
+
+        [Test]
+        public void Accumulator_SubtractAccumulator4Minus2_Return2()
+        {
+            // Act 
+            double c = _uut.Subtract(4, 2);
+
+            // Assert
+            Assert.That(_uut.Accumulator, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void Accumulator_MultiplyAccumulator2Times3_Return6()
+        {
+            // Act 
+            double c = _uut.Multiply(2, 3);
+
+            // Assert
+            Assert.That(_uut.Accumulator, Is.EqualTo(6));
+        }
+
+        [Test]
+        public void Accumulator_PowerAccumulator2Raised3_Return12()
+        {
+            // Act 
+            double c = _uut.Power(2, 3);
+
+            // Assert
+            Assert.That(_uut.Accumulator, Is.EqualTo(8));
+        }
+
+        [Test]
+        public void Accumulator_DivideAccumulator4Divided2_Return2()
+        {
+            // Act 
+            double c = _uut.Divide(4, 2);
+
+            // Assert
+            Assert.That(_uut.Accumulator, Is.EqualTo(2));
+        }
     }
 
     public class CalculatorTestClass
