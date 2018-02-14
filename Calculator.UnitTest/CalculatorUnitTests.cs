@@ -54,6 +54,14 @@ namespace Calculator.Test.Unit
             Assert.That(_uut.Power(a, exp), Is.EqualTo(expected));
         }
 
+        [TestCase(2, -1, "You used a negative exponent")]
+        public void Power_ExpBelowZero_ThrowsInvalidArgumentException(double a, double exp, string expected)
+        {
+            var ex = Assert.Catch<ArgumentException>(() => _uut.Power(a, exp));
+
+            StringAssert.Contains(expected, ex.Message);
+        }
+
         // Testcase
         [Test, TestCaseSource(typeof(CalculatorTestClass), nameof(CalculatorTestClass.Add_SimpleCalculations))]
         public double Add_Add_SimpleCalculations(double a, double b)
@@ -105,7 +113,7 @@ namespace Calculator.Test.Unit
         [Test]
         public void Accumulator_SubtractAccumulator4Minus2_Return2()
         {
-            // Act 
+            // Act
             double c = _uut.Subtract(4, 2);
 
             // Assert
@@ -115,7 +123,7 @@ namespace Calculator.Test.Unit
         [Test]
         public void Accumulator_MultiplyAccumulator2Times3_Return6()
         {
-            // Act 
+            // Act
             double c = _uut.Multiply(2, 3);
 
             // Assert
@@ -125,7 +133,7 @@ namespace Calculator.Test.Unit
         [Test]
         public void Accumulator_PowerAccumulator2Raised3_Return12()
         {
-            // Act 
+            // Act
             double c = _uut.Power(2, 3);
 
             // Assert
@@ -135,7 +143,7 @@ namespace Calculator.Test.Unit
         [Test]
         public void Accumulator_DivideAccumulator4Divided2_Return2()
         {
-            // Act 
+            // Act
             double c = _uut.Divide(4, 2);
 
             // Assert
@@ -147,6 +155,13 @@ namespace Calculator.Test.Unit
         {
             // Assert
             Assert.That(_uut.Accumulator, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void Clear_AccuIsNull()
+        {
+            _uut.Clear();
+            Assert.That(_uut.Accumulator, Is.Null);
         }
     }
 
