@@ -163,6 +163,23 @@ namespace Calculator.Test.Unit
             _uut.Clear();
             Assert.That(_uut.Accumulator, Is.Null);
         }
+
+        [TestCase(1, "You need to use a standard expression from Calculator, before using shorthand calculations")]
+        public void Add_Add1PlusNull_ThrowsArgumentException(double a, string expected)
+        {
+            var ex = Assert.Catch<ArgumentException>(() => _uut.Add(a));
+
+            StringAssert.Contains(expected, ex.Message);
+        }
+
+        [TestCase(1, 1, 2)]
+        public void Add_Add1PlusNull_ThrowsArgumentException(double a, double accu, double expected)
+        {
+            //Act
+            _uut.Add(accu, 0);
+
+            Assert.That(_uut.Add(a), Is.EqualTo(2));
+        }
     }
 
     public class CalculatorTestClass

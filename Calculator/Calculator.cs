@@ -8,7 +8,7 @@ namespace Calculator
 {
     public class Calculator
     {
-        public double? Accumulator { get; private set; } = 0;
+        public double? Accumulator { get; private set; } = null;
 
 
         public double Add(double a, double b)
@@ -57,6 +57,55 @@ namespace Calculator
         public void Clear()
         {
             Accumulator = null;
+        }
+
+
+        // Overloads
+        public double Add(double addend)
+        {
+            if (Accumulator == null)
+            {
+                throw new ArgumentException("You need to use a standard expression from Calculator, before using shorthand calculations");
+            }
+            return Add((double) Accumulator, addend);
+        }
+
+        public double Subtract(double subtractor)
+        {
+            if (Accumulator == null)
+            {
+                throw new ArgumentException("You need to use a standard expression from Calculator, before using shorthand calculations");
+            }
+            return Subtract((double)Accumulator, subtractor);
+        }
+
+        public double Multiply(double multiplier)
+        {
+            if (Accumulator == null)
+            {
+                throw new ArgumentException("You need to use a standard expression from Calculator, before using shorthand calculations");
+            }
+            return Multiply((double)Accumulator, multiplier);
+        }
+
+        public double Divide(double divisor)
+        {
+            if (Accumulator == null)
+            {
+                throw new ArgumentException("You need to use a standard expression from Calculator, before using shorthand calculations");
+            }
+
+            return Divide((double)Accumulator, divisor);
+        }
+
+        public double Power(double exponent)
+        {
+            if (Accumulator == null)
+            {
+                throw new ArgumentException("You need to use a standard expression from Calculator, before using shorthand calculations");
+            }
+
+            return Power((double)Accumulator, exponent);
         }
     }
 }
