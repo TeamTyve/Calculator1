@@ -154,7 +154,7 @@ namespace Calculator.Test.Unit
         public void Accumulator_FreshAccumulator_Returns0()
         {
             // Assert
-            Assert.That(_uut.Accumulator, Is.EqualTo(0));
+            Assert.That(_uut.Accumulator, Is.Null);
         }
 
         [Test]
@@ -173,12 +173,80 @@ namespace Calculator.Test.Unit
         }
 
         [TestCase(1, 1, 2)]
-        public void Add_Add1PlusNull_ThrowsArgumentException(double a, double accu, double expected)
+        public void Add_Add1PlusNull_Returns2(double a, double accu, double expected)
         {
             //Act
             _uut.Add(accu, 0);
 
             Assert.That(_uut.Add(a), Is.EqualTo(2));
+        }
+
+        [TestCase(1, "You need to use a standard expression from Calculator, before using shorthand calculations")]
+        public void Sub_Sub1MinusNull_ThrowsArgumentException(double a, string expected)
+        {
+            var ex = Assert.Catch<ArgumentException>(() => _uut.Subtract(a));
+
+            StringAssert.Contains(expected, ex.Message);
+        }
+
+        [TestCase(1, 1, 0)]
+        public void Sub_Sub1Minusl_Returns0(double a, double accu, double expected)
+        {
+            //Act
+            _uut.Add(accu, 0);
+
+            Assert.That(_uut.Subtract(a), Is.EqualTo(expected));
+        }
+
+        [TestCase(1, "You need to use a standard expression from Calculator, before using shorthand calculations")]
+        public void Multiply_Multiply1TimesNull_ThrowsArgumentException(double a, string expected)
+        {
+            var ex = Assert.Catch<ArgumentException>(() => _uut.Multiply(a));
+
+            StringAssert.Contains(expected, ex.Message);
+        }
+
+        [TestCase(3, 3, 9)]
+        public void Multiply_Multiply3Times3_Returns9(double a, double accu, double expected)
+        {
+            //Act
+            _uut.Multiply(accu, 1);
+
+            Assert.That(_uut.Multiply(a), Is.EqualTo(expected));
+        }
+
+        [TestCase(1, "You need to use a standard expression from Calculator, before using shorthand calculations")]
+        public void Divide_DivideNullby1_ThrowsArgumentException(double a, string expected)
+        {
+            var ex = Assert.Catch<ArgumentException>(() => _uut.Divide(a));
+
+            StringAssert.Contains(expected, ex.Message);
+        }
+
+        [TestCase(3, 3, 1)]
+        public void Divide_Divide3by3_Returns1(double a, double accu, double expected)
+        {
+            //Act
+            _uut.Divide(accu, 1);
+
+            Assert.That(_uut.Divide(a), Is.EqualTo(expected));
+        }
+
+        [TestCase(1, "You need to use a standard expression from Calculator, before using shorthand calculations")]
+        public void Power_PowerNullRaisedBy1_ThrowsArgumentException(double a, string expected)
+        {
+            var ex = Assert.Catch<ArgumentException>(() => _uut.Power(a));
+
+            StringAssert.Contains(expected, ex.Message);
+        }
+
+        [TestCase(3, 3, 27)]
+        public void Power_Power3RaisedBy3_Returns27(double a, double accu, double expected)
+        {
+            //Act
+            _uut.Power(accu, 1);
+
+            Assert.That(_uut.Power(a), Is.EqualTo(expected));
         }
     }
 
